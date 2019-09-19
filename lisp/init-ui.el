@@ -57,9 +57,10 @@
 ;; Menu/Tool/Scroll bars
 (unless emacs/>=27p        ; Move to early init-file in 27
   (unless sys/mac-x-p
-    (push '(menu-bar-lines . 0) default-frame-alist))
-  (push '(tool-bar-lines . 0) default-frame-alist)
-  (push '(vertical-scroll-bars) default-frame-alist))
+    (push '(menu-bar-lines . 1) default-frame-alist))  ;; mathieu: want menu bars and scroll bars
+  (push '(tool-bar-lines . 1) default-frame-alist)
+  (push '(vertical-scroll-bars . 1) default-frame-alist)
+  )
 
 ;; Theme
 (if (centaur-compatible-theme-p centaur-theme)
