@@ -67,7 +67,7 @@
          ("C-c i" . counsel-git)
          ("C-c j" . counsel-git-grep)
          ("C-c l" . counsel-locate)
-         ("C-c r" . counsel-rg)
+         ;; ("C-c r" . counsel-rg)
          ("C-c z" . counsel-fzf)
 
          ("C-c c F" . counsel-faces)
