@@ -1,34 +1,73 @@
+;; author: Mathieu Renzo
+
+;; Author: Mathieu Renzo <mathren90@gmail.com>
+;; Keywords: files
+
+;; Copyright (C) 2019-2020 Mathieu Renzo
+
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or (at
+;; your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful, but
+;; WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+;; General Public License for more details.
+;;
+;; You should have received a copy of the GNU General Public License
+;; along with this program.  If not, see http://www.gnu.org/licenses/.
+
+;; for full config see also:
+;; ~/.bash_functions
+;; ~/.bash_aliases
+;; and for desktop launcher:
+;; ~/.local/share/applications/emacsclient.desktop
 
 
 
-;;; MESA STUFF
 
+(setq inhibit-startup-message t) ;; hide the startup message
+(setq inhibit-startup-echo-area-message t)
+(setq initial-scratch-message nil)
+(setq frame-title-format '("" "%b  -  Emacs " emacs-version))
+
+;; add MELPA
+(require 'package)
+(add-to-list 'package-archives
+             '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+;; recent files https://www.emacswiki.org/emacs/RecentFiles
+(recentf-mode 1)
+(setq recentf-max-menu-items 25)
+(setq recentf-max-saved-items 25)
+(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+
+
+;; handling parenthesis, https://emacs.stackexchange.com/questions/28857/how-to-complete-brackets-automatically
+(electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil)
+
+
+;;; MESA STUFF https://github.com/jschwab/mesa-major-mode
 (add-to-list 'load-path "/home/math/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "12115")
+(setq mesa-version-mesa-dir "/home/math/Documents/Mathieu/Research/codes/mesa_12115/mesa12115/")
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
-(add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (view-mode))))
+(add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
 (add-to-list 'auto-mode-alist '("/run_star_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
 (add-to-list 'auto-mode-alist '("/run_binary_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(setq
- mesa-version-mesa-dir "/home/math/Documents/Mathieu/Research/codes/mesa_11701/mesa11701")
+;; see also ~/.emacs for latex config
 
-;; LATEX stuff
-(add-to-list 'load-path "/home/math/.emacs.d/emacs_tools/")
-(add-hook 'Latex-mode-hook
-          (lambda ()
-            (require 'okular-search)
-            ('TeX-PDF-mode)
-            ('(LaTeX-command "latex -synctex=1"))
-            '(TeX-output-view-style '(("^pdf$" "." "okular %s.pdf")))))
-(add-hook 'LaTeX-mode-hook (lambda () (local-set-key "\C-x\C-j" 'okular-jump-to-line)))
-(add-hook 'tex-mode-hook (lambda () (local-set-key "\C-x\C-j" 'okular-jump-to-line)))
+;; reftex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq reftex-plug-into-AUCTeX t)
-;; prevent linebreaks in math mode
+;; ;; prevent linebreaks in math mode
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
@@ -37,9 +76,11 @@
 
 
 ;;;;;;;;;; Mathieu
+(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
+(load-theme 'zenburn t)
 (if (not(display-graphic-p))		
     (load-theme 'wombat) ;; use whiteboard or default for light theme
- ;; (load-theme 'deeper-blue)
 )
 
 ;; open .bash_ in sh-script-mode
@@ -64,7 +105,8 @@
 ;; capture for quick notes
 (setq org-capture-templates
       ' (("n" "NOTES" entry
-          (file+headline "/home/math/Documents/Mathieu/Research/Notes.org" "NOTES")
+          (file+headline "
+/home/math/Documents/Research/Notes.org" "NOTES")
           "* %?\n")))
 
 
@@ -101,3 +143,6 @@
 (put 'last-line-which-col 'kmacro t)
 
 (global-set-key (kbd "C-c l") 'last-line-which-col)
+
+
+
