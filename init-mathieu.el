@@ -24,6 +24,9 @@
 (setq initial-scratch-message nil)
 (setq frame-title-format '("" "%b  -  Emacs " emacs-version))
 
+;; start in server-mode
+(server-start) 
+
 ;; add MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -197,12 +200,12 @@
 ;; ~/.local/share/applications/emacsclient.desktop
 ;; containing:
 ;;
-;; [Desktop Entry]
+;;[Desktop Entry]
 ;; Name=Emacs client
 ;; GenericName=Text Editor
 ;; Comment=Edit text
 ;; MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
-;; Exec=emacsclient --alternate-editor="" --create-frame %F
+;; Exec=emacsclient --alternate-editor="emacs -l ~/.emacs.d/init-mathieu.el" --create-frame %F
 ;; Icon=emacs26
 ;; Type=Application
 ;; Terminal=false
