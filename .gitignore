@@ -1,3 +1,4 @@
+*.python-environments
 *.bak
 *.data
 *.elc

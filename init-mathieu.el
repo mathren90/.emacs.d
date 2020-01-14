@@ -139,6 +139,11 @@
 
 (global-set-key (kbd "C-c l") 'last-line-which-col)
 
+;; python autocompletion
+(elpy-enable)  
+(setq elpy-rpc-backend "jedi") 
+
+
 ;; --------------------------------------------------------------------
 ;;
 ;; my setup on linux to achieve the following:
