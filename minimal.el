@@ -24,7 +24,7 @@
 (require 'mesa-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "12115")
-(setq mesa-version-mesa-dir "~/Documents/Mathieu/Research/codes/mesa_12115/mesa12115")
+(setq mesa-version-mesa-dir "/mnt/home/mrenzo/codes/mesa/mesa_12115/mesa12115")
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
 (add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
