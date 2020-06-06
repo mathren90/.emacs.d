@@ -48,8 +48,8 @@
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
 (require 'run-star-extras)
-(setq mesa-default-version "12115")
-(setq mesa-version-mesa-dir "~/Documents/Mathieu/Research/codes/mesa_12115/mesa12115/")
+(setq mesa-default-version "12778")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa_12778/mesa12778/")
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
 (add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
@@ -73,9 +73,9 @@
 ;;;;;;;;;; Mathieu
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t)
-(if (not(display-graphic-p))		
-    (load-theme 'wombat) ;; use whiteboard or default for light theme
-)
+;; (if (not(display-graphic-p))		
+;;     (load-theme 'wombat) ;; use whiteboard or default for light theme
+;; )
 
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
@@ -141,6 +141,16 @@
 ;; python autocompletion
 (elpy-enable)  
 (setq elpy-rpc-backend "jedi") 
+(add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/blacken.el")
+
+
+
+;; Enable Flycheck
+
+(when (require 'flycheck nil t)
+  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
+  (add-hook 'elpy-mode-hook 'flycheck-mode))
+
 
 ;; TRAMP
 (setq tramp-default-method "ssh")
