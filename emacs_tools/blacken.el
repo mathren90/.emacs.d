@@ -48,7 +48,7 @@
   "Name of the executable to run."
   :type 'string)
 
-(defcustom blacken-line-length nil
+(defcustom blacken-line-length 100
   "Line length to enforce.
 
 It must be an integer, nil or `fill'.

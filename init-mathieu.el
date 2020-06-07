@@ -141,7 +141,7 @@
 ;; python autocompletion
 (elpy-enable)  
 (setq elpy-rpc-backend "jedi") 
-(add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/blacken.el")
+(add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 
 
 
