@@ -23,8 +23,10 @@
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
 (require 'run-star-extras)
-(setq mesa-default-version "12115")
-(setq mesa-version-mesa-dir "~/Documents/Mathieu/Research/codes/mesa_12115/mesa12115")
+(setq mesa-default-version "12778")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa_12778/mesa12778/")
+(setq mesa-mode-enforce-formatting-default t)
+
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
 (add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
