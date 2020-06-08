@@ -18,14 +18,19 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
+;; for full config see also:
+;; ~/.bash_functions
+;; ~/.bash_aliases
+;; and for desktop launcher:
+;; ~/.local/share/applications/emacsclient.desktop
+
+
+
 
 (setq inhibit-startup-message t) ;; hide the startup message
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 (setq frame-title-format '("" "%b  -  Emacs " emacs-version))
-
-;; start in server-mode
-(server-start) 
 
 ;; add MELPA
 (require 'package)
@@ -49,7 +54,7 @@
 (require 'mesa-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "12778")
-(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa_12778/mesa12778/")
+(setq mesa-version-mesa-dir "~/codes/mesa/mesa_12778/mesa12778")
 (setq mesa-mode-enforce-formatting-default t)
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
@@ -73,10 +78,11 @@
 
 ;;;;;;;;;; Mathieu
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
+
 (load-theme 'zenburn t)
-;; (if (not(display-graphic-p))		
-;;     (load-theme 'wombat) ;; use whiteboard or default for light theme
-;; )
+(if (not(display-graphic-p))		
+    (load-theme 'wombat) ;; use whiteboard or default for light theme
+)
 
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
@@ -101,7 +107,7 @@
 (setq org-capture-templates
       ' (("n" "NOTES" entry
           (file+headline "
-~/Documents/Research/Notes.org" "NOTES")
+/home/math/Documents/Research/Notes.org" "NOTES")
           "* %?\n")))
 
 
@@ -139,93 +145,5 @@
 
 (global-set-key (kbd "C-c l") 'last-line-which-col)
 
-;; python autocompletion
-(elpy-enable)  
-(setq elpy-rpc-backend "jedi") 
-(add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 
 
-
-;; Enable Flycheck
-
-(when (require 'flycheck nil t)
-  (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-
-;; TRAMP
-(setq tramp-default-method "ssh")
-
-;; --------------------------------------------------------------------
-;;
-;; my setup on linux to achieve the following:
-;; check if emacs server is already running.
-;; If not, start one and open a new frame.
-;; if yes, then check if there is an emacs frame already existing.
-;; If not create one to open. If yes, open the file in a new buffer in the existing frame.
-;; 
-;; --------------------------------------------------------------------
-;; 
-;; define in ~/.bashrc the following function:
-;;
-;; function _emacs
-;; {
-;;
-;;     # Selected options for "emacsclient"
-;;     #
-;;     # -c          Create a new frame instead of trying to use the current
-;;     #             Emacs frame.
-;;     #
-;;     # -e          Evaluate the FILE arguments as ELisp expressions.
-;;     #
-;;     # -n          Don't wait for the server to return.
-;;     #
-;;     # -t          Open a new Emacs frame on the current terminal.
-;;     #
-;;     # Note that the "-t" and "-n" options are contradictory: "-t" says to
-;;     # take control of the current text terminal to create a new client frame,
-;;     # while "-n" says not to take control of the text terminal.  If you
-;;     # supply both options, Emacs visits the specified files(s) in an existing
-;;     # frame rather than a new client frame, negating the effect of "-t".
-;;
-;;     # check whether an Emacs server is already running
-;;     pgrep -l "^emacs$" > /dev/null
-;;
-;;     # otherwise, start Emacs server daemon
-;;     if [ $? -ne 0 ]; then
-;; 	emacs -l ~/.emacs.d/init-mathieu.el --daemon
-;;     fi
-;;
-;;     # return a list of all frames on $DISPLAY
-;;     emacsclient -e "(frames-on-display-list \"$DISPLAY\")" &>/dev/null
-;;
-;;     # open frames detected, so open files in current frame
-;;     if [ $? -eq 0 ]; then
-;; 	emacsclient -n -t "$@"
-;; 	# no open frames detected, so open new frame
-;;     else
-;; 	emacsclient -n -c "$@"
-;;     fi
-;;  
-;; }
-;;
-;; # then define the following alias
-;; alias e='/usr/bin/emacs26 -nw -Q -l ~/.emacs.d/minimal.el' # for quick lookup of things
-;; alias alias emacs='_emacs'
-;;
-;; and for desktop launcher create a file:
-;; ~/.local/share/applications/emacsclient.desktop
-;; containing:
-;;
-;;[Desktop Entry]
-;; Name=Emacs client
-;; GenericName=Text Editor
-;; Comment=Edit text
-;; MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
-;; Exec=emacsclient --alternate-editor="emacs -l ~/.emacs.d/init-mathieu.el" --create-frame %F
-;; Icon=emacs26
-;; Type=Application
-;; Terminal=false
-;; Categories=Development;TextEditor;
-;; StartupWMClass=Emacs
-;; Keywords=Text;Editor;
