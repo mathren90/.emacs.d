@@ -95,6 +95,10 @@
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; line number
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
 ;; org-mode
 ;; show inline images in org mode
 (setq org-startup-with-inline-images t)
