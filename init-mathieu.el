@@ -23,8 +23,8 @@
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 (setq frame-title-format '("" "%b  -  Emacs " emacs-version))
-;; no bell sound
-(setq ring-bell-function 'ignore)
+(setq ring-bell-function 'ignore) ;; no bell sound
+(tool-bar-mode -1) ;; no toolbar
 
 ;; start in server-mode
 (server-start) 
