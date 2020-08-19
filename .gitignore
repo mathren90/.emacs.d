@@ -76,7 +76,7 @@ url/
 var/
 workspace/
 *~
-elpy/
+elpy/*
 recentf
 *recentf*
 *#*

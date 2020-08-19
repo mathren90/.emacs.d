@@ -1,5 +1,5 @@
 # My emacs configuration
-*** Disclaimer *** I am not a lisp programmer and this is a collection
+* Disclaimer * I am not a lisp programmer and this is a collection
 of dirty hacks mostly inspired by stuff found online. Do not take this
 as an example of how things should be done.
 
@@ -10,7 +10,7 @@ My setup aims at achieving the following:
  - If yes, then check if there is an emacs frame already existing.
  - If not create a new one to open. If yes, open the file in a new buffer in the existing frame.
 
-To do so, define in your `~/.bashrc` (or equivalentthe following function:
+To do so, define in your `~/.bashrc` (or equivalent) the following function:
 
 ```
 function _emacs
