@@ -38,7 +38,7 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-(global-set-key "\C-x\ \C-r" 'recentf-open-files)
+(global-set-key "\C-c\C-r" 'recentf-open-files)
 
 
 ;; handling parenthesis, https://emacs.stackexchange.com/questions/28857/how-to-complete-brackets-automatically
@@ -62,8 +62,8 @@
 ;; ;; hide show mode configuration
 (add-hook 'f90-mode-hook
 	  (lambda()
-	    (local-set-key (kbd "M-s s") 'hs-show-block)
-	    (local-set-key (kbd "M-s h") 'hs-hide-block)
+	    (local-set-key (kbd "\M-ss") 'hs-show-block)
+	    (local-set-key (kbd "\M-sh") 'hs-hide-block)
 	    (hs-minor-mode t)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -71,6 +71,7 @@
 
 ;; reftex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
+(add-hook 'LaTex-mode-hook 'flyspell-mode)
 (setq reftex-plug-into-AUCTeX t)
 ;; ;; prevent linebreaks in math mode
 (add-hook 'LaTeX-mode-hook
@@ -82,10 +83,7 @@
 
 ;;;;;;;;;; Mathieu
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'zenburn t)
-;; (if (not(display-graphic-p))		
-;;     (load-theme 'wombat) ;; use whiteboard or default for light theme
-;; )
+(load-theme 'zenburn t) ;; use whiteboard or default for light theme
 
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
@@ -94,6 +92,9 @@
 ;; Activate toggle-truncate-lines from start
 (set-default 'truncate-lines t)
 (global-set-key (kbd "C-c C-t C-l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-<tab>") 'previous-buffer)
+(global-set-key (kbd "C-`") 'next-buffer)
+
 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -105,17 +106,15 @@
 ;; show inline images in org mode
 (setq org-startup-with-inline-images t)
 (setq org-image-actual-width 400)
-(define-key global-map "\C-c l" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)  ;; already set in init-org.e
-(define-key global-map "\C-c r" 'org-capture)
-(define-key global-map "\C-c t l" 'org-todo-list)
-
 ;; capture for quick notes
 (setq org-capture-templates
       ' (("n" "NOTES" entry
-          (file+headline "
-~/Documents/Research/Notes.org" "NOTES")
+          (file+headline "~/Documents/Research/Notes.org" "NOTES")
           "* %?\n")))
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)  
+(define-key global-map "\C-cr" 'org-capture)
+(define-key global-map "\C-ctl" 'org-todo-list)
 
 
 ;;jump to last (but one) line asking for column
@@ -169,8 +168,7 @@
 ;; TODO: fix this
 (setq tramp-default-method "ssh")
 
-
-;; Treemacs
+;; treemacs
 (use-package treemacs
   :ensure t
   :defer t
@@ -219,10 +217,12 @@
           treemacs-user-header-line-format       nil
           treemacs-width                         35
           treemacs-workspace-switch-cleanup      nil)
-
+    
+    (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
     ;;(treemacs-resize-icons 44)
+
     (treemacs-follow-mode t)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode t)
@@ -235,25 +235,33 @@
   :bind
   (:map global-map
         ("M-0"       . treemacs-select-window)
-        ("C-x t 1"   . treemacs-delete-other-windows)
-        ("C-x t t"   . treemacs)
-        ("C-x t B"   . treemacs-bookmark)
-        ("C-x t C-t" . treemacs-find-file)
-        ("C-x t M-t" . treemacs-find-tag)))
+        ("<f8>"   . treemacs))
+        ;; ("C-x t B"   . treemacs-bookmark)
+        ;; ("C-x t C-t" . treemacs-find-file)
+        ;; ("C-x t M-t" . treemacs-find-tag)))
+
+;; (use-package treemacs-evil
+;;   :after treemacs evil
+;;   :ensure t)
+
+;; (use-package treemacs-projectile
+;;   :after treemacs projectile
+;;   :ensure t)
 
 (use-package treemacs-icons-dired
   :after treemacs dired
   :ensure t
   :config (treemacs-icons-dired-mode))
 
-(use-package treemacs-magit
-  :after treemacs magit
-  :ensure t)
+;; (use-package treemacs-magit
+;;   :after treemacs magit
+;;   :ensure t)
 
 ;; (use-package treemacs-persp ;;treemacs-persective if you use perspective.el vs. persp-mode
 ;;   :after treemacs persp-mode ;;or perspective vs. persp-mode
 ;;   :ensure t
 ;;   :config (treemacs-set-scope-type 'Perspectives))
+
 
 
 
