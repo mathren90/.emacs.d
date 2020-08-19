@@ -1,7 +1,7 @@
 # My emacs configuration
-* Disclaimer * I am not a lisp programmer and this is a collection
-of dirty hacks mostly inspired by stuff found online. Do not take this
-as an example of how things should be done.
+*Disclaimer* I am not a lisp programmer and this is a collection
+of dirty hacks mostly inspired by stuff found online. *Do not take this
+as an example of how things should be done*.
 
 My setup aims at achieving the following:
 
