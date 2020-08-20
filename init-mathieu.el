@@ -31,6 +31,9 @@
 ;; start in server-mode
 (server-start) 
 
+;; config cleanup
+(require 'use-package)
+
 ;; add MELPA
 (require 'package)
 (add-to-list 'package-archives
@@ -47,7 +50,8 @@
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
 
-
+;; Activate toggle-truncate-lines from start
+(set-default 'truncate-lines t)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
@@ -83,24 +87,13 @@
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t) ;; use whiteboard or default for light theme
-
-;; open .bash_ in sh-script-mode
+;; open .bash_* in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
-
-
-;; Activate toggle-truncate-lines from start
-(set-default 'truncate-lines t)
-(global-set-key (kbd "C-c C-t C-l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-<tab>") 'previous-buffer)
-(global-set-key (kbd "C-`") 'next-buffer)
-
-
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; line number
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
-
 ;; org-mode
 ;; show inline images in org mode
 (setq org-startup-with-inline-images t)
@@ -114,7 +107,10 @@
 (define-key global-map "\C-ca" 'org-agenda)  
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
-
+; keybindings
+(global-set-key (kbd "C-c C-t C-l") 'toggle-truncate-lines)
+(global-set-key (kbd "C-<tab>") 'previous-buffer)
+(global-set-key (kbd "C-`") 'next-buffer)
 
 ;;jump to last (but one) line asking for column
 ;; to define macro with user interaction
@@ -150,12 +146,9 @@
 
 (global-set-key (kbd "C-c l") 'last-line-which-col)
 
-;; python autocompletion
-(elpy-enable)  
-(setq elpy-rpc-backend "jedi") 
+;; ;; python autocompletion
+(elpy-enable)
 (load "~/.emacs.d/emacs_tools/blacken.el")
-
-
 
 ;; Enable Flycheck
 (when (require 'flycheck nil t)
@@ -226,117 +219,21 @@
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode t)
     (pcase (cons (not (null (executable-find "git")))
-                 (not (null treemacs-python-executable)))
+                 (not (null treemacs-python-executable))))
       (`(t . t)
        (treemacs-git-mode 'deferred))
       (`(t . _)
-       (treemacs-git-mode 'simple))))
+       (treemacs-git-mode 'simple)))
   :bind
   (:map global-map
         ("M-0"       . treemacs-select-window)
-        ("<f8>"   . treemacs))
+        ("<f8>"   . treemacs)))
         ;; ("C-x t B"   . treemacs-bookmark)
         ;; ("C-x t C-t" . treemacs-find-file)
         ;; ("C-x t M-t" . treemacs-find-tag)))
 
-;; (use-package treemacs-evil
-;;   :after treemacs evil
-;;   :ensure t)
-
-;; (use-package treemacs-projectile
-;;   :after treemacs projectile
-;;   :ensure t)
 
 (use-package treemacs-icons-dired
   :after treemacs dired
   :ensure t
   :config (treemacs-icons-dired-mode))
-
-;; (use-package treemacs-magit
-;;   :after treemacs magit
-;;   :ensure t)
-
-;; (use-package treemacs-persp ;;treemacs-persective if you use perspective.el vs. persp-mode
-;;   :after treemacs persp-mode ;;or perspective vs. persp-mode
-;;   :ensure t
-;;   :config (treemacs-set-scope-type 'Perspectives))
-
-
-
-
-
-;; --------------------------------------------------------------------
-;;
-;; my setup on linux to achieve the following:
-;; check if emacs server is already running.
-;; If not, start one and open a new frame.
-;; if yes, then check if there is an emacs frame already existing.
-;; If not create one to open. If yes, open the file in a new buffer in the existing frame.
-;; 
-;; --------------------------------------------------------------------
-;; 
-;; define in ~/.bashrc the following function:
-;;
-;; function _emacs
-;; {
-;;
-;;     # Selected options for "emacsclient"
-;;     #
-;;     # -c          Create a new frame instead of trying to use the current
-;;     #             Emacs frame.
-;;     #
-;;     # -e          Evaluate the FILE arguments as ELisp expressions.
-;;     #
-;;     # -n          Don't wait for the server to return.
-;;     #
-;;     # -t          Open a new Emacs frame on the current terminal.
-;;     #
-;;     # Note that the "-t" and "-n" options are contradictory: "-t" says to
-;;     # take control of the current text terminal to create a new client frame,
-;;     # while "-n" says not to take control of the text terminal.  If you
-;;     # supply both options, Emacs visits the specified files(s) in an existing
-;;     # frame rather than a new client frame, negating the effect of "-t".
-;;
-;;     # check whether an Emacs server is already running
-;;     pgrep -l "^emacs$" > /dev/null
-;;
-;;     # otherwise, start Emacs server daemon
-;;     if [ $? -ne 0 ]; then
-;; 	emacs -l ~/.emacs.d/init-mathieu.el --daemon
-;;     fi
-;;
-;;     # return a list of all frames on $DISPLAY
-;;     emacsclient -e "(frames-on-display-list \"$DISPLAY\")" &>/dev/null
-;;
-;;     # open frames detected, so open files in current frame
-;;     if [ $? -eq 0 ]; then
-;; 	emacsclient -n -t "$@"
-;; 	# no open frames detected, so open new frame
-;;     else
-;; 	emacsclient -n -c "$@"
-;;     fi
-;;  
-;; }
-;;
-;; # then define the following alias
-;; alias e='/usr/bin/emacs26 -nw -Q -l ~/.emacs.d/minimal.el' # for quick lookup of things
-;; alias alias emacs='_emacs'
-;;
-;; and for desktop launcher create a file:
-;; ~/.local/share/applications/emacsclient.desktop
-;; containing:
-;;
-;;[Desktop Entry]
-;; Name=Emacs client
-;; GenericName=Text Editor
-;; Comment=Edit text
-;; MimeType=text/english;text/plain;text/x-makefile;text/x-c++hdr;text/x-c++src;text/x-chdr;text/x-csrc;text/x-java;text/x-moc;text/x-pascal;text/x-tcl;text/x-tex;application/x-shellscript;text/x-c;text/x-c++;
-;; Exec=emacsclient --alternate-editor="emacs -l ~/.emacs.d/init-mathieu.el" --create-frame %F
-;; Icon=emacs
-;; Type=Application
-;; Terminal=false
-;; Categories=Development;TextEditor;
-;; StartupWMClass=Emacs
-;; Keywords=Text;Editor;
-
-
