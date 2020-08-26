@@ -113,8 +113,8 @@
 (define-key global-map "\C-ctl" 'org-todo-list)
 ; keybindings
 (global-set-key (kbd "C-c C-t C-l") 'toggle-truncate-lines)
-(global-set-key (kbd "C-<tab>") 'previous-buffer)
-(global-set-key (kbd "C-`") 'next-buffer)
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)
 
 ;;jump to last (but one) line asking for column
 ;; to define macro with user interaction
