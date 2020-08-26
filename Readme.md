@@ -65,7 +65,7 @@ and for desktop launcher create a file:
 ```
 containing:
 ```
-Desktop Entry]
+[Desktop Entry]
 Name=Emacs client
 GenericName=Text Editor
 Comment=Edit text
