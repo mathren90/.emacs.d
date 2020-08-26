@@ -23,7 +23,10 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
-(setq frame-title-format '("" "%b  -  Emacs " emacs-version))
+(setq frame-title-format '("%@ "
+			   (:eval (if (buffer-name)
+				      (abbreviate-file-name (buffer-name))
+				    "%b" "%+"))))
 (setq ring-bell-function 'ignore) ;; no bell sound
 (tool-bar-mode -1) ;; no toolbar
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
