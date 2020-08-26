@@ -34,13 +34,14 @@
 ;; start in server-mode
 (server-start) 
 
-;; config cleanup
-(require 'use-package)
-
 ;; add MELPA
 (require 'package)
 (add-to-list 'package-archives
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
+
+;; config cleanup
+(require 'use-package)
+
 
 ;; recent files https://www.emacswiki.org/emacs/RecentFiles
 (recentf-mode 1)
