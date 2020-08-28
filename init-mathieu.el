@@ -23,10 +23,10 @@
 (setq inhibit-startup-message t) ;; hide the startup message
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
-(setq frame-title-format '("%@ "
+(setq frame-title-format '("%@ %*"
 			   (:eval (if (buffer-name)
 				      (abbreviate-file-name (buffer-name))
-				    "%b" "%+"))))
+				    "%b %*"))))
 (setq ring-bell-function 'ignore) ;; no bell sound
 (tool-bar-mode -1) ;; no toolbar
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -77,6 +77,10 @@
 	    (local-set-key (kbd "\M-ss") 'hs-show-block)
 	    (local-set-key (kbd "\M-sh") 'hs-hide-block)
 	    (hs-minor-mode t)))
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+;; spell checking
+(dolist (hook '(text-mode-hook LaTeX-mode-hook))
+  (add-hook hook (lambda () (flyspell-mode 1))))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX configuration
 ;; reftex
