@@ -36,6 +36,17 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+;; allow more garbage before collection
+(setq gc-cons-threshold 25000000) ;; 25Mb
+
+;; no backup files
+(setq make-backup-files nil)
+;; and move autosaves to /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
 ;; aiutoindent with return
 (define-key global-map (kbd "RET") 'newline-and-indent)
 
