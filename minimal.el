@@ -13,6 +13,47 @@
     (load-theme 'wombat)
   ())
 
+;; auto-revert when a file changes
+(global-auto-revert-mode t)
+
+;; zoom-in and out
+(defun zoom-in ()
+  (interactive)
+  (let ((x (+ (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(defun zoom-out ()
+  (interactive)
+  (let ((x (- (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(define-key global-map (kbd "C-+") 'zoom-in)
+(define-key global-map (kbd "C--") 'zoom-out)
+
+;; use shift + arrows to change buffer
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
+;; allow more garbage before collection
+(setq gc-cons-threshold 25000000) ;; 25Mb
+
+;; no backup files
+(setq make-backup-files nil)
+;; and move autosaves to /tmp
+(setq backup-directory-alist
+      `((".*" . ,temporary-file-directory)))
+(setq auto-save-file-name-transforms
+      `((".*" ,temporary-file-directory t)))
+
+;; aiutoindent with return
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; delete trailing white spaces except for markdown
+(add-hook 'before-save-hook '(lambda()
+                              (when (not (or (derived-mode-p 'markdown-mode)))
+                                (delete-trailing-whitespace))))
 
 
 ;; open .bash_ in sh-script-mode
@@ -42,4 +83,3 @@
 
 ;; avoid large file warning
 (setq large-file-warning-threshold nil)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
