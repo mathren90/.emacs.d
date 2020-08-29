@@ -37,8 +37,7 @@
              '("melpa-stable" . "https://stable.melpa.org/packages/"))
 
 ;; config cleanup
-(require 'use-package)
-
+; (require 'use-package)
 
 ;; recent files https://www.emacswiki.org/emacs/RecentFiles
 (recentf-mode 1)
@@ -138,12 +137,11 @@
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 
 (load-theme 'zenburn t)
-(if (not(display-graphic-p))		
+(if (not(display-graphic-p))
     (load-theme 'wombat) ;; use whiteboard or default for light theme
 )
 
 ;; open .bash_* in sh-script-mode
->>>>>>> 536d081d5710c40ca666ca9fd24263c2c849f872
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
@@ -161,7 +159,7 @@
           (file+headline "~/Documents/Research/Notes.org" "NOTES")
           "* %?\n")))
 (define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)  
+(define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
 ; keybindings
@@ -265,7 +263,7 @@
           treemacs-user-header-line-format       nil
           treemacs-width                         35
           treemacs-workspace-switch-cleanup      nil)
-    
+
     (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
