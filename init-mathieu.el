@@ -32,7 +32,7 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;; start in server-mode
-(server-start) 
+(server-start)
 
 ;; add MELPA
 (require 'package)
@@ -41,7 +41,6 @@
 
 ;; config cleanup
 (require 'use-package)
-
 
 ;; recent files https://www.emacswiki.org/emacs/RecentFiles
 (recentf-mode 1)
@@ -158,7 +157,7 @@
           (file+headline "~/Documents/Research/Notes.org" "NOTES")
           "* %?\n")))
 (define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)  
+(define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
 ; keybindings
@@ -201,7 +200,11 @@
 (global-set-key (kbd "C-c l") 'last-line-which-col)
 
 ;; ;; python autocompletion
-(elpy-enable)
+(use-package elpy
+  :ensure t
+  :init
+  (elpy-enable))
+;; (elpy-enable)
 (load "~/.emacs.d/emacs_tools/blacken.el")
 
 ;; Enable Flycheck
@@ -211,7 +214,6 @@
 
 
 ;; TRAMP
-;; TODO: fix this
 (setq tramp-default-method "ssh")
 
 ;; treemacs
@@ -263,7 +265,7 @@
           treemacs-user-header-line-format       nil
           treemacs-width                         35
           treemacs-workspace-switch-cleanup      nil)
-    
+
     (define-key treemacs-mode-map [mouse-1] #'treemacs-single-click-expand-action)
     ;; The default width and height of the icons is 22 pixels. If you are
     ;; using a Hi-DPI display, uncomment this to double the icon size.
