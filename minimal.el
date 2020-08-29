@@ -36,8 +36,14 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
-
+;; aiutoindent with return
 (define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; delete trailing white spaces except for markdown
+(add-hook 'before-save-hook '(lambda()
+                              (when (not (or (derived-mode-p 'markdown-mode)))
+                                (delete-trailing-whitespace))))
+
 
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
