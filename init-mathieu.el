@@ -61,7 +61,6 @@
 (set-default 'truncate-lines t)
 
 ;; zoom-in and out
-
 (defun zoom-in ()
   (interactive)
   (let ((x (+ (face-attribute 'default :height)
@@ -126,6 +125,7 @@
 ;; line number
 (when (version<= "26.0.50" emacs-version )
   (global-display-line-numbers-mode))
+
 ;; org-mode
 ;; show inline images in org mode
 (setq org-startup-with-inline-images t)

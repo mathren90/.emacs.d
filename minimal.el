@@ -13,7 +13,28 @@
     (load-theme 'wombat)
   ())
 
+;; auto-revert when a file changes
+(global-auto-revert-mode t)
 
+;; zoom-in and out
+(defun zoom-in ()
+  (interactive)
+  (let ((x (+ (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(defun zoom-out ()
+  (interactive)
+  (let ((x (- (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(define-key global-map (kbd "C-+") 'zoom-in)
+(define-key global-map (kbd "C--") 'zoom-out)
+
+;; use shift + arrows to change buffer
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
 
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
