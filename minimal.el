@@ -32,4 +32,14 @@
 (add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
 (add-to-list 'auto-mode-alist '("/run_star_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
 (add-to-list 'auto-mode-alist '("/run_binary_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
+
+;; ;; hide show mode configuration                                                                                                                                                                               
+(add-hook 'f90-mode-hook                                                                                                                                                                                         
+          (lambda()                                                                                                                                                                                              
+            (local-set-key (kbd "M-s s") 'hs-show-block)                                                                                                                                                         
+            (local-set-key (kbd "M-s h") 'hs-hide-block)                                                                                                                                                         
+            (hs-minor-mode t)))            
+
+;; avoid large file warning
+(setq large-file-warning-threshold nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
