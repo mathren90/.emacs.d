@@ -77,6 +77,10 @@
 (define-key global-map (kbd "C-+") 'zoom-in)
 (define-key global-map (kbd "C--") 'zoom-out)
 
+;; use shift + arrows to change buffer
+(when (fboundp 'windmove-default-keybindings)
+  (windmove-default-keybindings))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
