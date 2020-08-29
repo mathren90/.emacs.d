@@ -36,6 +36,9 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
 ;; open .bash_ in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
 

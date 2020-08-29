@@ -80,6 +80,14 @@
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
+;; autoindent with return key
+(define-key global-map (kbd "RET") 'newline-and-indent)
+
+;; delete trailing white spaces except for markdown
+(add-hook 'before-save-hook '(lambda()
+                              (when (not (or (derived-mode-p 'markdown-mode)))
+                                (delete-trailing-whitespace))))
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
@@ -104,6 +112,8 @@
 ;; spell checking
 (dolist (hook '(text-mode-hook LaTeX-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
+(setq flyspell-sort-corrections nil)
+(setq flyspell-issue-message-flag nil)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; LaTeX configuration
 ;; reftex
