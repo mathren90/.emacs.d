@@ -54,8 +54,28 @@
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
 
+;; auto-revert when a file changes
+(global-auto-revert-mode t)
+
 ;; Activate toggle-truncate-lines from start
 (set-default 'truncate-lines t)
+
+;; zoom-in and out
+
+(defun zoom-in ()
+  (interactive)
+  (let ((x (+ (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(defun zoom-out ()
+  (interactive)
+  (let ((x (- (face-attribute 'default :height)
+              10)))
+    (set-face-attribute 'default nil :height x)))
+
+(define-key global-map (kbd "C-+") 'zoom-in)
+(define-key global-map (kbd "C--") 'zoom-out)
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
