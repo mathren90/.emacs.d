@@ -54,7 +54,7 @@
 (setq electric-pair-preserve-balance nil)
 
 ;; auto-revert when a file changes
-(global-auto-revert-mode t)
+; (global-auto-revert-mode t)
 
 ;; Activate toggle-truncate-lines from start
 (set-default 'truncate-lines t)
