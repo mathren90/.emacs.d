@@ -105,13 +105,15 @@
 (require 'mesa-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "12778")
-(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa_12778/mesa12778/")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_12778/mesa12778/")
 (setq mesa-mode-enforce-formatting-default t)
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
 (add-to-list 'auto-mode-alist '("\\.defaults$" . (lambda () (mesa-mode) (f90-mode) (view-mode))))
 (add-to-list 'auto-mode-alist '("/run_star_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
+(add-to-list 'auto-mode-alist '("/run_star_extras.f90$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
 (add-to-list 'auto-mode-alist '("/run_binary_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
+(add-to-list 'auto-mode-alist '("/run_binary_extras.f90$" . (lambda () (f90-mode) (run-star-extras-minor-mode))))
 
 ;; ;; hide show mode configuration
 (add-hook 'f90-mode-hook
@@ -131,6 +133,7 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTex-mode-hook 'flyspell-mode)
 (setq reftex-plug-into-AUCTeX t)
+(setq reftex-default-bibliography '("/home/math/Documents/Research/Biblio_papers/bibtex/master_bibtex.bib"))
 ;; ;; prevent linebreaks in math mode
 (add-hook 'LaTeX-mode-hook
           (lambda ()
