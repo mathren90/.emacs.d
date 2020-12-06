@@ -105,7 +105,7 @@
 (require 'mesa-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "12778")
-(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_12778/mesa12778/")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_12778/")
 (setq mesa-mode-enforce-formatting-default t)
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
