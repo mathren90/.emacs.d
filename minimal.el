@@ -1,13 +1,13 @@
 ;; minimal configuration, fast startup
 ;; author: Mathieu Renzo
 
-(setq inhibit-startup-message t) ;; hide the startup message
+(setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 (setq frame-title-format '("" "%b @ Emacs " emacs-version))
 
-
-(global-linum-mode t) ;; enable line numbers globally
+;; enable line numbers globally
+(global-linum-mode t)
 
 (if (not (display-graphic-p))
     (load-theme 'wombat)
@@ -81,3 +81,6 @@
 	    (local-set-key (kbd "M-s h") 'hs-hide-block)
 	    (hs-minor-mode t)))
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)

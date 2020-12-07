@@ -104,8 +104,8 @@
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
 (require 'run-star-extras)
-(setq mesa-default-version "12778")
-(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_12778/")
+(setq mesa-default-version "15140")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_15140/")
 (setq mesa-mode-enforce-formatting-default t)
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
