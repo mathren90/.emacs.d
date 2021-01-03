@@ -60,6 +60,7 @@
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("/dot-bash[^/]*$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("/\.zsh[^/]*$" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("/dot-zsh[^/]*$" . shell-script-mode))
 
 
 ;;; MESA STUFF https://github.com/jschwab/mesa-major-mode
