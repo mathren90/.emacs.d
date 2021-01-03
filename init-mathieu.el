@@ -145,6 +145,8 @@
 (load-theme 'zenburn t) ;; use whiteboard or default for light theme
 ;; open .bash_* in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("/dot-bash[^/]*$" . shell-script-mode))
+(add-to-list 'auto-mode-alist '("/\.zsh[^/]*$" . shell-script-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; line number
