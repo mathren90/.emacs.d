@@ -46,7 +46,7 @@
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
-(global-set-key "\C-c\C-r" 'recentf-open-files)
+(global-set-key "\C-x\C-r" 'recentf-open-files)
 
 
 ;; handling parenthesis, https://emacs.stackexchange.com/questions/28857/how-to-complete-brackets-automatically
@@ -103,9 +103,10 @@
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
+(require 'lsp-mode)
 (require 'run-star-extras)
 (setq mesa-default-version "15140")
-(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_15140/")
+(setq mesa-version-mesa-dir "~/Documents/Research/codes/mesa/mesa_15140/mesa15140/")
 (setq mesa-mode-enforce-formatting-default t)
 
 (add-to-list 'auto-mode-alist '("/inlist[^/]*$" . mesa-mode))
