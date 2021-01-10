@@ -198,20 +198,43 @@
   (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 
-;; org-mode
-;; show inline images in org mode
-(setq org-startup-with-inline-images t)
-(setq org-image-actual-width 400)
-;; capture for quick notes
-(setq org-capture-templates
-      ' (("n" "NOTES" entry
-          (file+headline "~/Documents/Research/Notes.org" "NOTES")
-          "* %?\n")))
+(use-package org
+  :config
+  (setq org-ellipsis " ▾")
+  (setq org-startup-with-inline-images t)
+  (setq org-image-actual-width 400)
+  (setq org-capture-templates
+	'(("n" "NOTES" entry
+	   (file+headline "~/Documents/Research/Notes.org" "Notes")
+	   "* %?\n")
+	  ("r" "RANDOM" entry
+	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
+	   "* %?\n")
+	  ))
+    )
+
+(use-package org-bullets
+  :after org
+  :hook (org-mode . org-bullets-mode)
+  :custom
+  (org-bullets-bullet-list '("◉" "●" "○" "●" "○" "●" "○")))
+
+(defun efs/org-mode-visual-fill ()
+  (setq visual-fill-column-width 100
+        visual-fill-column-center-text t)
+  ;; (visual-fill-column-mode 1)
+  )
+
+(use-package visual-fill-column
+  :hook (org-mode . efs/org-mode-visual-fill))
+
+;;;;; keybindings
+;; org-related
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
-; keybindings
+;; others
 (global-set-key (kbd "C-c C-t C-l") 'toggle-truncate-lines)
 (global-set-key (kbd "C-<prior>") 'previous-buffer)
 (global-set-key (kbd "C-<next>") 'next-buffer)
@@ -246,7 +269,7 @@
 
 (put 'last-line-which-col 'kmacro t)
 
-(global-set-key (kbd "C-c l") 'last-line-which-col)
+(global-set-key (kbd "C-c C-l") 'last-line-which-col)
 
 ;; ;; python autocompletion
 (use-package elpy
