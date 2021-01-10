@@ -24,10 +24,7 @@
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 ;; UI
-(setq frame-title-format '("%@ %*"
-			   (:eval (if (buffer-name)
-				      (abbreviate-file-name (buffer-name))
-				    "%b %*"))))
+(setq frame-title-format '("%@ %*" (:eval (if (buffer-name)(abbreviate-file-name (buffer-name)) "%b %*"))))
 (setq ring-bell-function 'ignore)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
@@ -180,7 +177,7 @@
 
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
-(load-theme 'zenburn t) ;; use whiteboard or default for light theme
+(load-theme 'wombat t) ;; use whiteboard or default for light theme
 ;; open .bash_* in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("/dot-bash[^/]*$" . shell-script-mode))
@@ -293,3 +290,21 @@
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
 (use-package all-the-icons)
+
+(use-package ivy
+  :diminish
+  :bind (("C-s" . swiper)
+         :map ivy-minibuffer-map
+         ("TAB" . ivy-alt-done)
+         ("C-l" . ivy-alt-done)
+         ("C-j" . ivy-next-line)
+         ("C-k" . ivy-previous-line)
+         :map ivy-switch-buffer-map
+         ("C-k" . ivy-previous-line)
+         ("C-l" . ivy-done)
+         ("C-d" . ivy-switch-buffer-kill)
+         :map ivy-reverse-i-search-map
+         ("C-k" . ivy-previous-line)
+         ("C-d" . ivy-reverse-i-search-kill))
+  :config
+  (ivy-mode 1))
