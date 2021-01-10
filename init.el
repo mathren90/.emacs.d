@@ -110,11 +110,14 @@
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
   (setq org-capture-templates
-	'(("n" "NOTES" entry
-	   (file+headline "~/Documents/Research/Notes.org" "Notes")
+	'(("n" "Research note" entry
+	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
 	   "* %?\n")
-	  ("r" "RANDOM" entry
+	  ("r" "Random throwaway" entry
 	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
+	   "* %?\n")
+	  ("p" "Personal note" entry
+	   (file+headline "~/Documents/Mathieu/Notes.org" "Personal notes")
 	   "* %?\n")
 	  ))
     )
