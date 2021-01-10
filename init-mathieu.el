@@ -18,40 +18,53 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-; clean up startup
-(setq inhibit-startup-message t) ;; hide the startup message
+
+;; startup
+(setq inhibit-startup-message t)
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
+;; UI
 (setq frame-title-format '("%@ %*"
 			   (:eval (if (buffer-name)
 				      (abbreviate-file-name (buffer-name))
 				    "%b %*"))))
-(setq ring-bell-function 'ignore) ;; no bell sound
-(tool-bar-mode -1) ;; no toolbar
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+(setq ring-bell-function 'ignore)
+(tool-bar-mode -1)
+(menu-bar-mode -1)
+(scroll-bar-mode 0)
+(set-fringe-mode 0)
 
 ;; start in server-mode
 (server-start)
 
-;; add MELPA
 (require 'package)
-(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
-;; (package-initialize)
-;; config cleanup
+(setq package-archives '(("melpa" . "https://melpa.org/packages/")
+                         ("org" . "https://orgmode.org/elpa/")
+                         ("elpa" . "https://elpa.gnu.org/packages/")))
+(package-initialize)
+
+;; check if use-package installed, and if not install
+(unless (package-installed-p 'use-package)
+   (package-install 'use-package))
 (require 'use-package)
 
-;; recent files https://www.emacswiki.org/emacs/RecentFiles
+;; improve mode-line at the bottom
+(use-package doom-modeline
+  :ensure t
+  :init (doom-modeline-mode 1)
+  :custom ((doom-modeline-height 10)))
+
+;; recent files
 (recentf-mode 1)
 (setq recentf-max-menu-items 25)
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\C-r" 'recentf-open-files)
 
-
-;; handling parenthesis, https://emacs.stackexchange.com/questions/28857/how-to-complete-brackets-automatically
+;; handling parenthesis
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
+(use-package rainbow-delimiters
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; auto-revert when a file changes
 ; (global-auto-revert-mode t)
@@ -67,6 +80,7 @@
   (setq which-key-idle-delay 1))
 
 
+;; Customized key bindings
 ;; zoom-in and out
 (defun zoom-in ()
   (interactive)
@@ -83,13 +97,15 @@
 (define-key global-map (kbd "C-+") 'zoom-in)
 (define-key global-map (kbd "C--") 'zoom-out)
 
+;; ;; ESC quit prompts
+;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
 ;; use shift + arrows to change buffer
 (when (fboundp 'windmove-default-keybindings)
   (windmove-default-keybindings))
 
 ;; allow more garbage before collection
 (setq gc-cons-threshold 25000000) ;; 25Mb
-
 ;; no backup files
 (setq make-backup-files nil)
 ;; and move autosaves to /tmp
@@ -120,7 +136,6 @@
   (lsp-ui-doc-position 'bottom))
 
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; MESA STUFF https://github.com/jschwab/mesa-major-mode
 (add-to-list 'load-path "~/.emacs.d/emacs_tools/mesa-major-mode/")
 (require 'mesa-mode)
@@ -144,13 +159,15 @@
 	    (local-set-key (kbd "\M-ss") 'hs-show-block)
 	    (local-set-key (kbd "\M-sh") 'hs-hide-block)
 	    (hs-minor-mode t)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;; spell checking
 (dolist (hook '(text-mode-hook LaTeX-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (setq flyspell-sort-corrections nil)
 (setq flyspell-issue-message-flag nil)
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+
 ;; LaTeX configuration
 ;; reftex
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
@@ -161,7 +178,7 @@
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
 ;; theme
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'zenburn t) ;; use whiteboard or default for light theme
@@ -172,9 +189,15 @@
 (add-to-list 'auto-mode-alist '("/dot-zsh[^/]*$" . shell-script-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; line number
-(when (version<= "26.0.50" emacs-version )
-  (global-display-line-numbers-mode))
+;; line and column number
+;; (column-number-mode)
+(global-display-line-numbers-mode t)
+;; avoid line numbers in some modes
+;; (dolist (mode '(term-mode-hook
+;;                 shell-mode-hook
+;;                 eshell-mode-hook))
+;;   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
 
 ;; org-mode
 ;; show inline images in org mode
@@ -249,6 +272,8 @@
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+(use-package all-the-icons)
 
 
 ;; treemacs
