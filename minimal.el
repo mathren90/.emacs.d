@@ -82,7 +82,7 @@
       `((".*" ,temporary-file-directory t)))
 
 ;; ;; ESC quit prompts
-;; (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
 ;; autoindent with return key
 (define-key global-map (kbd "RET") 'newline-and-indent)
