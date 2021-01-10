@@ -1,4 +1,5 @@
-# My emacs configuration
+* My emacs configuration
+
 *Disclaimer* I am not a lisp programmer and this is a collection
 of dirty hacks mostly inspired by stuff found online. *Do not take this
 as an example of how things should be done*.
@@ -10,9 +11,10 @@ My setup aims at achieving the following:
  - If yes, then check if there is an emacs frame already existing.
  - If not create a new one to open. If yes, open the file in a new buffer in the existing frame.
 
-To do so, define in your `~/.bashrc` (or equivalent) the following function:
+To do so, define in your =~/.bashrc= (or equivalent) the following function:
 
-```
+#+begin_src
+
 function _emacs
 {
 
@@ -51,20 +53,24 @@ function _emacs
     else
 	emacsclient -n -c "$@"
     fi
- 
+
 }
-```
+#+end_src
+
+
 then define the following alias
-```
+
+#+begin_src
+
 alias e='/usr/bin/emacs -nw -Q -l ~/.emacs.d/minimal.el' # for quick lookup of things
 alias alias emacs='_emacs'
-```
-and for desktop launcher create a file:
-```
-~/.local/share/applications/emacsclient.desktop
-```
-containing:
-```
+
+#+end_src
+
+and for desktop launcher create a file =~/.local/share/applications/emacsclient.desktop = containing:
+
+#+begin_src
+
 [Desktop Entry]
 Name=Emacs client
 GenericName=Text Editor
@@ -77,5 +83,4 @@ Terminal=false
 Categories=Development;TextEditor;
 StartupWMClass=Emacs
 Keywords=Text;Editor;
-```
-
+#+end_src
