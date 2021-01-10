@@ -3,7 +3,7 @@
 ;; Author: Mathieu Renzo <mathren90@gmail.com>
 ;; Keywords: files
 
-;; Copyright (C) 2019-2020 Mathieu Renzo
+;; Copyright (C) 2019-2021 Mathieu Renzo
 
 ;; This program is free software: you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -152,7 +152,6 @@
 (add-to-list 'auto-mode-alist '("/run_binary_extras.f$" . (lambda () (f90-mode) (run-star-extras-minor-mode) (lsp-mode))))
 (add-to-list 'auto-mode-alist '("/run_binary_extras.f90$" . (lambda () (f90-mode) (run-star-extras-minor-mode) (lsp-mode))))
 
-
 ;; ;; hide show mode configuration
 (add-hook 'f90-mode-hook
 	  (lambda()
@@ -193,10 +192,10 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 ;; avoid line numbers in some modes
-;; (dolist (mode '(term-mode-hook
-;;                 shell-mode-hook
-;;                 eshell-mode-hook))
-;;   (add-hook mode (lambda () (display-line-numbers-mode 0))))
+(dolist (mode '(term-mode-hook
+                shell-mode-hook
+                eshell-mode-hook))
+  (add-hook mode (lambda () (display-line-numbers-mode 0))))
 
 
 ;; org-mode
@@ -240,9 +239,7 @@
 (defun go-to-column (column)
   (interactive "nColumn: ")
   (move-to-column column t))
-
 (global-set-key (kbd "M-g TAB") 'go-to-column)
-
 
 (fset 'last-line-which-col
       "\C-[>\C-[OA\C-a\C-[g\C-i\C-u\C-xq[OB")
@@ -263,7 +260,6 @@
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
 
 ;; TRAMP
 (setq tramp-default-method "ssh")
