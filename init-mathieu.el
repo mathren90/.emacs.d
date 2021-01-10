@@ -176,7 +176,6 @@
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
 
 ;; theme
-(add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 (load-theme 'wombat t) ;; use whiteboard or default for light theme
 ;; open .bash_* in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
