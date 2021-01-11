@@ -47,6 +47,10 @@
 (add-to-list 'auto-mode-alist '("/dot-zsh[^/]*$" . shell-script-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
+;; Font;; apt-get install fonts-hack-ttf
+(set-face-attribute 'default nil :font "Hack")
+(set-frame-font "Hack" nil t)
+
 ;; zoom-in and out
 (defun zoom-in ()
   (interactive)
