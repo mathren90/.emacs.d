@@ -43,6 +43,9 @@
 
 (use-package all-the-icons)
 
+(use-package all-the-icons-dired
+  :hook (dired-mode . all-the-icons-dired-mode))
+
 ;; improve mode-line at the bottom
 (use-package doom-modeline
   :ensure t
@@ -199,10 +202,6 @@
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-
-;; TRAMP
-(setq tramp-default-method "ssh")
-
 ;; magit
 (use-package magit
   :custom
@@ -259,3 +258,7 @@
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
+
+(use-package tramp
+  :config
+  (setq tramp-default-method "ssh"))
