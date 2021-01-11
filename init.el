@@ -122,6 +122,14 @@
 	  ))
     )
 
+;; to paste inline images with org-download
+;; pasting from clipboard requires "wl-paste" available on apt
+(use-package org-download
+  :config
+  (setq-default org-download-image-dir "~/Documents/Research/.org_notes_figures/")
+  )
+
+
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
