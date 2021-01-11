@@ -108,6 +108,7 @@
   (setq org-ellipsis " ▾")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
+  (setq org-hide-emphasis-markers t) ;; hide synthax markers
   (setq org-capture-templates
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
