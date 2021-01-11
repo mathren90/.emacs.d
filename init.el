@@ -105,7 +105,7 @@
 
 (use-package org
   :config
-  (setq org-ellipsis " ▾")
+  (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
   (setq org-hide-emphasis-markers t) ;; hide synthax markers
