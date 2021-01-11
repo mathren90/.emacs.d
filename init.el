@@ -41,6 +41,8 @@
    (package-install 'use-package))
 (require 'use-package)
 
+(use-package all-the-icons)
+
 ;; improve mode-line at the bottom
 (use-package doom-modeline
   :ensure t
@@ -206,8 +208,6 @@
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 
-(use-package all-the-icons)
-
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -225,3 +225,22 @@
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
+
+(use-package counsel
+  :bind (("C-M-j" . 'counsel-switch-buffer)
+         :map minibuffer-local-map
+         ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
+
+
+(use-package ivy-prescient
+  :after counsel
+  :custom
+  (ivy-prescient-enable-filtering nil)
+  :config
+  ;; Uncomment the following line to have sorting remembered across sessions!
+  (prescient-persist-mode 1)
+  (ivy-prescient-mode 1))
