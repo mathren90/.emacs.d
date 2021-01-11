@@ -48,6 +48,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
 ;; Font;; apt-get install fonts-hack-ttf
+;; see https://github.com/source-foundry/Hack
 (set-face-attribute 'default nil :font "Hack")
 (set-frame-font "Hack" nil t)
 
