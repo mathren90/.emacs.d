@@ -103,7 +103,6 @@
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
 
-
 (use-package org
   :config
   (setq org-ellipsis " ▾")
