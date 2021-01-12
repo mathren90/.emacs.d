@@ -53,7 +53,8 @@
 		     all-the-icons-ivy-rich
 		     all-the-icons-ivy
 		     all-the-icons-ibuffer
-		     all-the-icons-dired))
+		     all-the-icons-dired
+		     no-littering))
 
 ; install the missing packages
 (dolist (package package-list)

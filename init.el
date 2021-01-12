@@ -37,6 +37,8 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(use-package no-littering)
+
 (require 'use-package)
 
 (use-package all-the-icons)
