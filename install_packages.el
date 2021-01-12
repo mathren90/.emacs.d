@@ -20,6 +20,9 @@
 ;; You should have received a copy of the GNU General Public License
 ;; along with this program.  If not, see http://www.gnu.org/licenses/.
 
+(require 'package)
+
+;; define list of my packages
 (setq package-list '(which-key
 		     use-package
 		     swiper
