@@ -47,11 +47,6 @@
 (add-to-list 'auto-mode-alist '("/dot-zsh[^/]*$" . shell-script-mode))
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 
-;; Font;; apt-get install fonts-hack-ttf
-;; see https://github.com/source-foundry/Hack
-(set-face-attribute 'default nil :font "Hack")
-(set-frame-font "Hack" nil t)
-
 ;; zoom-in and out
 (defun zoom-in ()
   (interactive)
@@ -65,6 +60,8 @@
               10)))
     (set-face-attribute 'default nil :height x)))
 
+;; define global zoom in/out
+;; N.B. per buffer zoom in/out can be achieved with C-x C-+ and C-x C--
 (define-key global-map (kbd "C-+") 'zoom-in)
 (define-key global-map (kbd "C--") 'zoom-out)
 
