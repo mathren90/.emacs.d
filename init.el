@@ -50,7 +50,7 @@
 (use-package doom-modeline
   :ensure t
   :custom ((doom-modeline-height 10))
-  :hook (after-init . doom-modeline-mode))
+  :init (doom-modeline-mode 1))
 
 ;; recent files
 (recentf-mode 1)
