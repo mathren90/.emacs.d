@@ -81,11 +81,6 @@
 
 * Improvements planned
 
-** TODO fix redundances
-
- Right now =minimal.el= and =init.el= have redundant
- options. This is not needed if always loading =minimal.el= before =init.el=
-
 ** TODO org-babel
 
  Organize =init.el= with org-babel.
