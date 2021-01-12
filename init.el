@@ -47,8 +47,8 @@
 ;; improve mode-line at the bottom
 (use-package doom-modeline
   :ensure t
-  :init (doom-modeline-mode 1)
-  :custom ((doom-modeline-height 10)))
+  :custom ((doom-modeline-height 10))
+  :hook (after-init . doom-modeline-mode))
 
 ;; recent files
 (recentf-mode 1)

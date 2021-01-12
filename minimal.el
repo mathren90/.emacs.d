@@ -25,7 +25,7 @@
 (setq inhibit-startup-echo-area-message t)
 (setq initial-scratch-message nil)
 ;; UI
-(setq frame-title-format '("%@ %*" (:eval (if (buffer-name)(abbreviate-file-name (buffer-name)) "%b %*"))))
+(setq frame-title-format '("Emacs %@ %*" (:eval (if (buffer-name)(abbreviate-file-name (buffer-name)) "%b %*"))))
 (setq ring-bell-function 'ignore)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
