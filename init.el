@@ -135,7 +135,6 @@
   (setq-default org-download-image-dir "~/Documents/Research/.org_notes_figures/")
   )
 
-
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
@@ -190,19 +189,20 @@
 
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
 
-;; ;; python autocompletion
+;; python autocompletion
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
-;; (elpy-enable)
+
+; to format python code with black
 (load "~/.emacs.d/emacs_tools/blacken.el")
 
 ;; Enable Flycheck
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-;; magit
+
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
@@ -240,7 +240,7 @@
   :custom
   (ivy-prescient-enable-filtering nil)
   :config
-  ;; Uncomment the following line to have sorting remembered across sessions!
+  ;; remember sorting across sessions
   (prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
