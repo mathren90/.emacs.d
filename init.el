@@ -136,6 +136,7 @@
 ;; and can be done with =M-x org-download-clipboard=
 (use-package org-download
   :config
+  ;; create hidden folder to store image files
   (setq-default org-download-image-dir ".org_notes_figures/")
   )
 
