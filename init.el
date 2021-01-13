@@ -43,8 +43,12 @@
 
 (use-package all-the-icons)
 
+;; Dired file browser
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
+
+;; use only one buffer for dired
+(use-package dired-single)
 
 ;; improve mode-line at the bottom
 (use-package doom-modeline
@@ -132,7 +136,7 @@
 ;; and can be done with =M-x org-download-clipboard=
 (use-package org-download
   :config
-  (setq-default org-download-image-dir "~/Documents/Research/.org_notes_figures/")
+  (setq-default org-download-image-dir ".org_notes_figures/")
   )
 
 (use-package org-bullets
