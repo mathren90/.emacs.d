@@ -21,6 +21,9 @@
 ;; load the bare minimum
 (load "~/.emacs.d/minimal.el")
 
+;; when in GUI ask for confirmation when closing emacs
+(setq-default confirm-kill-emacs (quote y-or-n-p))
+
 ;; avoid line numbers in some modes
 (dolist (mode '(term-mode-hook
                 shell-mode-hook

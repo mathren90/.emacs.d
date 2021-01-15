@@ -94,6 +94,9 @@
                               (when (not (or (derived-mode-p 'markdown-mode)))
                                 (delete-trailing-whitespace))))
 
+;; don't ask which buffer when killing
+(global-set-key (kbd "\C-x k") 'kill-this-buffer)
+
 ;; open dot-bash* .bash* in sh-script-mode
 (add-to-list 'auto-mode-alist '("/\.bash[^/]*$" . shell-script-mode))
 (add-to-list 'auto-mode-alist '("/dot-bash[^/]*$" . shell-script-mode))
