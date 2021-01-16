@@ -92,8 +92,8 @@ annotate what I am doing, and then use =org-babel= to tangle the org
 files to the config files. These are then symlinked using [[https://www.gnu.org/software/stow/][gnu stow]] to
 my =~/.emacs.d/= folder. Specifically:
 
-=Emacs_minimal_configuration.org= is tangled to =minimal.el= and
-=Emacs_complete_configuration.org= is tangles to =init.el.=
+=minimal_configuration.org= is tangled to =minimal.el= and
+=complete_configuration.org= is tangles to =init.el.=
 
 So to update my configuration I first edit the relevant org file, then
 invoke =org-babel-tangle= to create the non-literate elisp file, and
