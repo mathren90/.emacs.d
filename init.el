@@ -38,9 +38,9 @@
                          ("elpa" . "https://elpa.gnu.org/packages/")))
 (package-initialize)
 
-(use-package no-littering)
-
 (require 'use-package)
+
+(use-package no-littering)
 
 (use-package all-the-icons)
 
@@ -125,13 +125,13 @@
   (setq org-capture-templates
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
-	   "* %?\n")
+	   "* %?\n %T")
 	  ("r" "Random throwaway" entry
 	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
-	   "* %?\n")
+	   "* %?\n %T")
 	  ("p" "Personal note" entry
 	   (file+headline "~/Documents/Mathieu/Notes.org" "Personal notes")
-	   "* %?\n")
+	   "* %?\n %T")
 	  ))
     )
 
@@ -242,7 +242,6 @@
   (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
   :config
   (counsel-mode 1))
-
 
 (use-package ivy-prescient
   :after counsel
