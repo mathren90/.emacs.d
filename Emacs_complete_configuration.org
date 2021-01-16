@@ -97,8 +97,6 @@ over tramp
   :init (doom-modeline-mode 1))
 #+end_src
 
-*** TODO fix icons in doom-modeline
-
 ** Parenthesis handling
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -398,3 +396,6 @@ Using the macro query above, I defined a way to jump.
 
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
 #+end_src
+*  Outstanding minor issues
+*** TODO fix icons in doom-modeline
+*** TODO fix shift+arrow for org-agenda
