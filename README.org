@@ -79,8 +79,22 @@
  Keywords=Text;Editor;
  #+end_src
 
-* Improvements planned
+* How I manage my configuration
 
-** TODO org-babel
+I have two nested configuration files:
 
- Organize =init.el= with org-babel.
+1) =minimal.el= which is for quick lookup of things
+2) =init.el= which is more comprehensive and loads =minimal.el= and adds a
+   lot of things.
+
+I actually manage both as org files, so that I can comment and
+annotate what I am doing, and then use =org-babel= to tangle the org
+files to the config files. These are then symlinked using [[https://www.gnu.org/software/stow/][gnu stow]] to
+my =~/.emacs.d/= folder. Specifically:
+
+=Emacs_minimal_configuration.org= is tangled to =minimal.el= and
+=Emacs_complete_configuration.org= is tangles to =init.el.=
+
+So to update my configuration I first edit the relevant org file, then
+invoke =org-babel-tangle= to create the non-literate elisp file, and
+finally I stow it (i.e., symlink to =~/.emacs.d=)
