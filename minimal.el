@@ -37,6 +37,7 @@
 (global-display-line-numbers-mode t)
 ;; handling parenthesis
 (electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil)
 
 ;; theme
 (load-theme 'wombat t) ;; use whiteboard or default for light theme

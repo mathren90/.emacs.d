@@ -95,6 +95,12 @@
   :custom
   (lsp-ui-doc-position 'bottom))
 
+;; pretty symbols
+(global-prettify-symbols-mode 1)
+
+;; highlight line
+;; (global-hl-line-mode -1)
+
 ;; LaTeX configuration
 
 ;; spell checking
@@ -118,7 +124,7 @@
   ;; unbind Shift+arrows from org mode, as I use these for navigating buffers
   (define-key org-mode-map (kbd "<S-left>") nil)
   (define-key org-mode-map (kbd "<S-right>") nil)
-  (setq org-ellipsis " ▾ ")
+  (setq org-ellipsis " ⤵ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
   (setq org-hide-emphasis-markers t) ;; hide synthax markers
