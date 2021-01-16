@@ -399,3 +399,4 @@ Using the macro query above, I defined a way to jump.
 *  Outstanding minor issues
 *** TODO fix icons in doom-modeline
 *** TODO fix shift+arrow for org-agenda
+*** TODO fix coupling with okular/latex
