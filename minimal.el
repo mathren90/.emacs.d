@@ -11,6 +11,7 @@
 (column-number-mode)
 (global-display-line-numbers-mode t)
 (load-theme 'wombat t)
+(set-default 'truncate-lines t)
 
 (add-hook 'before-save-hook '(lambda()
                               (when (not (or (derived-mode-p 'markdown-mode)))

@@ -27,8 +27,7 @@ Improve the window title with =*= for modified buffers, =@= for remote buffers
 (e.g., over =tramp=), and remove a bunch of stuff (bell, tool-bar,
 menus).
 
-I always want line and column numbers (some exceptions are defined in
-the complete configuration).
+I always want line and column numbers.
 
 And I am currently using the =wombat= theme, which is part of the
 default Emacs.
@@ -43,6 +42,7 @@ default Emacs.
 (column-number-mode)
 (global-display-line-numbers-mode t)
 (load-theme 'wombat t)
+(set-default 'truncate-lines t)
 #+END_SRC
 
 * Remove trailing white spaces when saving
