@@ -345,6 +345,23 @@ locally. It will read your =~/.ssh/config= appropriately.
   (setq tramp-default-method "ssh"))
 #+end_src
 
+** Helpful to improve documentation
+
+This improves the documentation accessed with =M-x describe-key=, =M-x
+describe-function= and similar.
+
+#+BEGIN_SRC emacs-lisp :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(use-package helpful
+  :custom
+  (counsel-describe-function-function #'helpful-callable)
+  (counsel-describe-variable-function #'helpful-variable)
+  :bind
+  ([remap describe-function] . counsel-describe-function)
+  ([remap describe-command] . helpful-command)
+  ([remap describe-variable] . counsel-describe-variable)
+  ([remap describe-key] . helpful-key))
+#+END_SRC
+
 * Customized keybindings
 
 ** org-mode related
