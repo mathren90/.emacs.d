@@ -28,10 +28,9 @@
 
 (use-package doom-modeline
   :ensure t
-  :custom (
-  (doom-modeline-height 10)
-  (setq doom-modeline-icon t))
+  :custom ((doom-modeline-height 10))
   :init (doom-modeline-mode 1))
+(setq doom-modeline-icon t)
 
 ;; these are configured in minimal.el
 ;; (electric-pair-mode 1)

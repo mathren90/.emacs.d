@@ -9,7 +9,8 @@ which is bound to =org-babel-tangle=). This file is then managed using
 * Minimal configuration
 
 For quick lookup of things (typically using =emacs -nw=) I only load a
-minimal configuration.
+minimal configuration. This is defined in [[~/Documents/dotfiles/emacs26.3/dot-emacs.d/minimal_configuration.org][minimal_configuration.org]]
+which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 
 #+begin_src emacs-lisp :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (load "~/.emacs.d/minimal.el")
@@ -87,16 +88,18 @@ over tramp
 
 ** Bottom line
 
- See [[https://github.com/seagle0128/doom-modeline][doom-modeline]].
+ See [[https://github.com/seagle0128/doom-modeline][doom-modeline]]. Using daemon mode the icons are not loaded by
+ default, so if using daemon mode (=daemonp= is true) add a hook to set
+ =doom-modeline-icon t=.
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package doom-modeline
   :ensure t
-  :custom (
-  (doom-modeline-height 10)
-  (setq doom-modeline-icon t))
+  :custom ((doom-modeline-height 10))
   :init (doom-modeline-mode 1))
+(setq doom-modeline-icon t)
 #+end_src
+
 
 ** Parenthesis handling
 
@@ -415,7 +418,7 @@ Using the macro query above, I defined a way to jump.
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
 #+end_src
 * Outstanding minor issues
-*** TODO fix icons in doom-modeline
+*** DONE fix icons in doom-modeline
 
     appears to be fixed by adding
     #+BEGIN_SRC
