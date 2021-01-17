@@ -7,8 +7,6 @@
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\C-r" 'recentf-open-files)
 
-(set-default 'truncate-lines t)
-
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org"   . "https://orgmode.org/elpa/")
@@ -76,6 +74,10 @@
   (define-key org-mode-map (kbd "<S-right>") nil)
   (define-key org-mode-map (kbd "<S-down>") nil)
   (define-key org-mode-map (kbd "<S-up>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-left>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-right>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-down>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-up>") nil)
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)

@@ -94,7 +94,6 @@ over tramp
 (setq doom-modeline-icon t)
 #+end_src
 
-
 ** Parenthesis handling
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -175,6 +174,10 @@ images. And I configure three different kind of notes for =org-capture=.
   (define-key org-mode-map (kbd "<S-right>") nil)
   (define-key org-mode-map (kbd "<S-down>") nil)
   (define-key org-mode-map (kbd "<S-up>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-left>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-right>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-down>") nil)
+  (define-key org-agenda-mode-map (kbd "<S-up>") nil)
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
@@ -412,12 +415,4 @@ Using the macro query above, I defined a way to jump.
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
 #+end_src
 * Outstanding minor issues
-*** DONE fix icons in doom-modeline
-
-    appears to be fixed by adding
-    #+BEGIN_SRC
-    (setq doom-modeline-icon t)
-    #+END_SRC
-
-*** TODO fix shift+arrow for org-agenda
 *** TODO fix coupling with okular/latex
