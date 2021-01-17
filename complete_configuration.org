@@ -398,5 +398,15 @@ Using the macro query above, I defined a way to jump.
 #+end_src
 *  Outstanding minor issues
 *** TODO fix icons in doom-modeline
+
+    looks like doom-modeline depends on Emacs 27.1 features,
+    specifically compiling one gets
+
+#+BEGIN_SRC
+doom-modeline-segments.el:2807:1:Warning: the function ‘seq-contains-p’ is not known to be defined.
+#+END_SRC
+
+   This may or may not be relevant to the icons issue
+
 *** TODO fix shift+arrow for org-agenda
 *** TODO fix coupling with okular/latex
