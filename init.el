@@ -74,10 +74,6 @@
   (define-key org-mode-map (kbd "<S-right>") nil)
   (define-key org-mode-map (kbd "<S-down>") nil)
   (define-key org-mode-map (kbd "<S-up>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-left>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-right>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-down>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-up>") nil)
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
@@ -86,14 +82,19 @@
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
 	   "* %?\n %T")
-	  ("r" "Random throwaway" entry
-	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
-	   "* %?\n %T")
 	  ("p" "Personal note" entry
 	   (file+headline "~/Documents/Mathieu/Notes.org" "Personal notes")
 	   "* %?\n %T")
+	  ("r" "Random throwaway" entry
+	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
+	   "* %?\n %T")
 	  ))
     )
+
+(define-key org-agenda-mode-map (kbd "<S-left>") nil)
+(define-key org-agenda-mode-map (kbd "<S-right>") nil)
+(define-key org-agenda-mode-map (kbd "<S-down>") nil)
+(define-key org-agenda-mode-map (kbd "<S-up>") nil)
 
 (use-package org-bullets
   :after org

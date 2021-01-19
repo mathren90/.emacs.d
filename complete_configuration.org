@@ -174,10 +174,6 @@ images. And I configure three different kind of notes for =org-capture=.
   (define-key org-mode-map (kbd "<S-right>") nil)
   (define-key org-mode-map (kbd "<S-down>") nil)
   (define-key org-mode-map (kbd "<S-up>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-left>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-right>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-down>") nil)
-  (define-key org-agenda-mode-map (kbd "<S-up>") nil)
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
@@ -186,15 +182,23 @@ images. And I configure three different kind of notes for =org-capture=.
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
 	   "* %?\n %T")
-	  ("r" "Random throwaway" entry
-	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
-	   "* %?\n %T")
 	  ("p" "Personal note" entry
 	   (file+headline "~/Documents/Mathieu/Notes.org" "Personal notes")
+	   "* %?\n %T")
+	  ("r" "Random throwaway" entry
+	   (file+headline "/tmp/Random_notes.org" "Random throughaway notes")
 	   "* %?\n %T")
 	  ))
     )
 #+end_src
+
+#+BEGIN_SRC emacs-lisp :tangle  ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(define-key org-agenda-mode-map (kbd "<S-left>") nil)
+(define-key org-agenda-mode-map (kbd "<S-right>") nil)
+(define-key org-agenda-mode-map (kbd "<S-down>") nil)
+(define-key org-agenda-mode-map (kbd "<S-up>") nil)
+#+END_SRC
+
 
 *** Nicer bullets and other eye-candy
 
