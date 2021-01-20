@@ -424,4 +424,3 @@ Using the macro query above, I defined a way to jump.
 #+end_src
 * Outstanding minor issues
 *** TODO fix coupling with okular/latex
-*** TODO fix shit+arrow agenda mode
