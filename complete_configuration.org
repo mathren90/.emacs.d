@@ -177,7 +177,7 @@ images. And I configure three different kind of notes for =org-capture=.
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
-  (setq org-hide-emphasis-markers t) ;; hide synthax markers
+  (setq org-hide-emphasis-markers t)
   (setq org-capture-templates
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
@@ -192,13 +192,17 @@ images. And I configure three different kind of notes for =org-capture=.
     )
 #+end_src
 
-#+BEGIN_SRC emacs-lisp :tangle  ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
-(define-key org-agenda-mode-map (kbd "<S-left>") nil)
-(define-key org-agenda-mode-map (kbd "<S-right>") nil)
-(define-key org-agenda-mode-map (kbd "<S-down>") nil)
-(define-key org-agenda-mode-map (kbd "<S-up>") nil)
-#+END_SRC
+Unbind Shift+arrows from org-agenda too.
 
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(use-package org-agenda
+   :config
+   (define-key org-agenda-mode-map (kbd "<S-left>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-right>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-down>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-up>") nil)
+)
+#+END_SRC
 
 *** Nicer bullets and other eye-candy
 
@@ -420,3 +424,4 @@ Using the macro query above, I defined a way to jump.
 #+end_src
 * Outstanding minor issues
 *** TODO fix coupling with okular/latex
+*** TODO fix shit+arrow agenda mode

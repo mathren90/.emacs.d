@@ -77,7 +77,7 @@
   (setq org-ellipsis " ▾ ")
   (setq org-startup-with-inline-images t)
   (setq org-image-actual-width 400)
-  (setq org-hide-emphasis-markers t) ;; hide synthax markers
+  (setq org-hide-emphasis-markers t)
   (setq org-capture-templates
 	'(("n" "Research note" entry
 	   (file+headline "~/Documents/Research/Notes.org" "Research notes")
@@ -91,10 +91,13 @@
 	  ))
     )
 
-(define-key org-agenda-mode-map (kbd "<S-left>") nil)
-(define-key org-agenda-mode-map (kbd "<S-right>") nil)
-(define-key org-agenda-mode-map (kbd "<S-down>") nil)
-(define-key org-agenda-mode-map (kbd "<S-up>") nil)
+(use-package org-agenda
+   :config
+   (define-key org-agenda-mode-map (kbd "<S-left>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-right>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-down>") nil)
+   (define-key org-agenda-mode-map (kbd "<S-up>") nil)
+)
 
 (use-package org-bullets
   :after org
