@@ -16,11 +16,13 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 (load "~/.emacs.d/minimal.el")
 #+end_src
 
+
 * Start in server mode
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (server-start)
 #+end_src
+
 
 * Configure recent files handling
 
@@ -30,6 +32,7 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 (setq recentf-max-saved-items 25)
 (global-set-key "\C-x\C-r" 'recentf-open-files)
 #+end_src
+
 
 * Initialize packages
 
@@ -47,7 +50,9 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 (require 'use-package)
 #+end_src
 
+
 * Packages I use
+
 ** Avoid creating tons of hidden files
 
 [[https://github.com/emacscollective/no-littering][no-littering]] to avoid creating too many hidden files.
@@ -55,6 +60,7 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package no-littering)
 #+end_src
+
 
 ** Icons for dired and doom-modeline
 
@@ -65,6 +71,7 @@ This might require running =M-x all-the-icons-install-fonts=
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package all-the-icons)
 #+end_src
+
 
 ** Dired file manager
 
@@ -80,6 +87,7 @@ over tramp
 (use-package dired-single)
 #+end_src
 
+
 ** Bottom line
 
  See [[https://github.com/seagle0128/doom-modeline][doom-modeline]]. Using daemon mode the icons are not loaded by
@@ -94,6 +102,7 @@ over tramp
 (setq doom-modeline-icon t)
 #+end_src
 
+
 ** Parenthesis handling
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -104,6 +113,7 @@ over tramp
   :hook (prog-mode . rainbow-delimiters-mode))
 #+end_src
 
+
 ** Suggestions for key bindings
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -113,6 +123,7 @@ over tramp
   :config
   (setq which-key-idle-delay 1))
 #+end_src
+
 
 ** Language server protocol
 
@@ -132,6 +143,7 @@ the lsp server separately.
   :custom
   (lsp-ui-doc-position 'bottom))
 #+end_src
+
 
 ** LaTeX related stuff
 
@@ -160,6 +172,7 @@ the lsp server separately.
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
 #+end_src
+
 
 ** Org mode related stuff
 
@@ -242,6 +255,7 @@ share that hidden folder content too.
   )
 #+end_src
 
+
 ** Python
 
 *** Autocompletion
@@ -269,6 +283,7 @@ Use [[https://pypi.org/project/black/][black]] to format code
   (add-hook 'elpy-mode-hook 'flycheck-mode))
 #+end_src
 
+
 ** Git version control with magit
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -276,6 +291,7 @@ Use [[https://pypi.org/project/black/][black]] to format code
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 #+end_src
+
 
 ** Improve search with ivy
 
@@ -312,6 +328,7 @@ This below allows ivy to order auto-completion based on most common usage.
   (ivy-prescient-mode 1))
 #+end_src
 
+
 ** Counsel
 
 #+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -324,6 +341,7 @@ This below allows ivy to order auto-completion based on most common usage.
   :config
   (counsel-mode 1))
 #+end_src
+
 
 ** Company
 
@@ -343,6 +361,7 @@ This below allows ivy to order auto-completion based on most common usage.
   :hook (company-mode . company-box-mode))
 #+end_src
 
+
 ** Tramp
 
 Tramp allows to connect to a remote server and open remote files
@@ -353,6 +372,7 @@ locally. It will read your =~/.ssh/config= appropriately.
   :config
   (setq tramp-default-method "ssh"))
 #+end_src
+
 
 ** Helpful to improve documentation
 
@@ -371,6 +391,7 @@ describe-function= and similar.
   ([remap describe-key] . helpful-key))
 #+END_SRC
 
+
 * Customized keybindings
 
 ** org-mode related
@@ -381,6 +402,7 @@ describe-function= and similar.
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
 #+end_src
+
 
 ** jump to last line of a given column
 
@@ -422,5 +444,8 @@ Using the macro query above, I defined a way to jump.
 
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
 #+end_src
+
+
 * Outstanding minor issues
-*** TODO fix coupling with okular/latex
+** TODO fix coupling with okular/latex
+** TODO fix =org-download-clipboard= gnome crashes
