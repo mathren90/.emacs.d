@@ -3,8 +3,8 @@
 (server-start)
 
 (recentf-mode 1)
-(setq recentf-max-menu-items 25)
-(setq recentf-max-saved-items 25)
+(setq recentf-max-menu-items 40)
+(setq recentf-max-saved-items 40)
 (global-set-key "\C-x\C-r" 'recentf-open-files)
 
 (require 'package)

@@ -17,6 +17,14 @@
                               (when (not (or (derived-mode-p 'markdown-mode)))
                                 (delete-trailing-whitespace))))
 
+(when (fboundp 'windmove-default-keybindings)
+   (windmove-default-keybindings))
+
+(global-set-key (kbd "C-<prior>") 'previous-buffer)
+(global-set-key (kbd "C-<next>") 'next-buffer)
+
+(global-set-key (kbd "C-x k") 'kill-this-buffer)
+
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
 
@@ -39,14 +47,6 @@
     (set-face-attribute 'default nil :height x)))
 (define-key global-map (kbd "C-+") 'zoom-in)
 (define-key global-map (kbd "C--") 'zoom-out)
-
-(when (fboundp 'windmove-default-keybindings)
-   (windmove-default-keybindings))
-
- (global-set-key (kbd "C-<prior>") 'previous-buffer)
- (global-set-key (kbd "C-<next>") 'next-buffer)
-
-(global-set-key (kbd "\C-x k") 'kill-this-buffer)
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
