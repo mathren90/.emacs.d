@@ -68,6 +68,9 @@
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
 
+(load "~/.emacs.d/emacs_tools/okular-latex.el")
+(load "~/.emacs.d/emacs_tools/okular-search.el")
+
 (use-package org
   :config
   (define-key org-mode-map (kbd "<S-left>") nil)

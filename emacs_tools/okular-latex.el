@@ -1,13 +1,13 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; Latex for Emacs
-;; 
+;;
 ;; Dependencies: okular, texlive-full, auctex
 ;;
-;; Okular setup: 
+;; Okular setup:
 ;; 1.) Open Okular and go to...
 ;; 2.) Settings -> Configure Okular -> Editor
 ;; 3.) Set Editor to "Emacs client"
-;; 4.) Command should automatically set to: 
+;; 4.) Command should automatically set to:
 ;; emacsclient -a emacs --no-wait +%l %f
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -38,11 +38,16 @@
 ;; Enable synctex generation. Even though the command shows
 ;; as "latex" pdflatex is actually called
 (custom-set-variables '(LaTeX-command "latex -synctex=1") )
+
+;; ##### Enable synctex correlation. From Okular just press
+;; ##### Shift + Left click to go to the good line.
+(setq TeX-source-correlate-mode t
+      TeX-source-correlate-start-server t)
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; Use Okular as the pdf viewer. Build okular 
-;; command, so that Okular jumps to the current line 
+;; Use Okular as the pdf viewer. Build okular
+;; command, so that Okular jumps to the current line
 ;; in the viewer.
 (setq TeX-view-program-selection
  '((output-pdf "PDF Viewer")))

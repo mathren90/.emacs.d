@@ -12,43 +12,43 @@ For quick lookup of things (typically using =emacs -nw=) I only load a
 minimal configuration. This is defined in [[~/Documents/dotfiles/emacs26.3/dot-emacs.d/minimal_configuration.org][minimal_configuration.org]]
 which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 
-#+begin_src emacs-lisp :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (load "~/.emacs.d/minimal.el")
-#+end_src
+#+END_SRC
 
 
 * Start in server mode
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (server-start)
-#+end_src
+#+END_SRC
 
 
 * Configure recent files handling
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (recentf-mode 1)
 (setq recentf-max-menu-items 40)
 (setq recentf-max-saved-items 40)
 (global-set-key "\C-x\C-r" 'recentf-open-files)
-#+end_src
+#+END_SRC
 
 
 * Initialize packages
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org"   . "https://orgmode.org/elpa/")
                          ("elpa"  . "https://elpa.gnu.org/packages/")))
 (package-initialize)
-#+end_src
+#+END_SRC
 
 [[https://github.com/jwiegley/use-package][use-package]] is used to have a clean configuration for individual packages.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (require 'use-package)
-#+end_src
+#+END_SRC
 
 
 * Packages I use
@@ -57,9 +57,9 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 
 [[https://github.com/emacscollective/no-littering][no-littering]] to avoid creating too many hidden files.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package no-littering)
-#+end_src
+#+END_SRC
 
 
 ** Icons for dired and doom-modeline
@@ -68,9 +68,9 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 
 This might require running =M-x all-the-icons-install-fonts=
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package all-the-icons)
-#+end_src
+#+END_SRC
 
 
 ** Dired file manager
@@ -80,12 +80,12 @@ Reuse the same buffer for dired, instead of opening one per folder.
 This will nicely still use a separate buffer for directory browsing
 over tramp
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
 
 (use-package dired-single)
-#+end_src
+#+END_SRC
 
 
 ** Bottom line
@@ -94,35 +94,35 @@ over tramp
  default, so if using daemon mode (=daemonp= is true) add a hook to set
  =doom-modeline-icon t=.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package doom-modeline
   :ensure t
   :custom ((doom-modeline-height 10))
   :init (doom-modeline-mode 1))
 (setq doom-modeline-icon t)
-#+end_src
+#+END_SRC
 
 
 ** Parenthesis handling
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 ;; these are configured in minimal.el
 ;; (electric-pair-mode 1)
 ;; (setq electric-pair-preserve-balance nil)
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
-#+end_src
+#+END_SRC
 
 
 ** Suggestions for key bindings
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package which-key
   :init (which-key-mode)
   :diminish which-key-mode
   :config
   (setq which-key-idle-delay 1))
-#+end_src
+#+END_SRC
 
 
 ** Language server protocol
@@ -130,7 +130,7 @@ over tramp
 I mostly use this for Fortran 90 coding. Note that you need to install
 the lsp server separately.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :init
@@ -142,36 +142,43 @@ the lsp server separately.
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
-#+end_src
+#+END_SRC
 
 
 ** LaTeX related stuff
 
 *** Spell checking
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (dolist (hook '(text-mode-hook LaTeX-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (setq flyspell-sort-corrections nil)
 (setq flyspell-issue-message-flag nil)
-#+end_src
+#+END_SRC
 
 *** References handling
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LaTex-mode-hook 'flyspell-mode)
 (setq reftex-plug-into-AUCTeX t)
 (setq reftex-default-bibliography '("~/Documents/Research/Biblio_papers/bibtex/master_bibtex.bib"))
-#+end_src
+#+END_SRC
 
 *** No line breaks in math mode
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (add-hook 'LaTeX-mode-hook
           (lambda ()
             (add-to-list 'fill-nobreak-predicate 'texmathp)))
-#+end_src
+#+END_SRC
+
+*** Okular forward/reverse search
+
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+  (load "~/.emacs.d/emacs_tools/okular-latex.el")
+  (load "~/.emacs.d/emacs_tools/okular-search.el")
+#+END_SRC
 
 
 ** Org mode related stuff
@@ -180,7 +187,7 @@ I unbind Shift+arrows from org mode, as I use these for navigating
 buffers (see =minimal.el=). I also want org-mode to start with inline
 images. And I configure three different kind of notes for =org-capture=.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package org
   :config
   (define-key org-mode-map (kbd "<S-left>") nil)
@@ -203,7 +210,7 @@ images. And I configure three different kind of notes for =org-capture=.
 	   "* %?\n %T")
 	  ))
     )
-#+end_src
+#+END_SRC
 
 Unbind Shift+arrows from org-agenda too.
 
@@ -219,7 +226,7 @@ Unbind Shift+arrows from org-agenda too.
 
 *** Nicer bullets and other eye-candy
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package org-bullets
   :after org
   :hook (org-mode . org-bullets-mode)
@@ -234,7 +241,7 @@ Unbind Shift+arrows from org-agenda too.
 
 (use-package visual-fill-column
   :hook (org-mode . efs/org-mode-visual-fill))
-#+end_src
+#+END_SRC
 
 *** Pasting images in the org files with org-download
 
@@ -248,54 +255,54 @@ I configure this so that the image file is saved in a hidden folder
 being pasted in. When moving/sharing the org file, remember to move or
 share that hidden folder content too.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package org-download
   :config
   (setq-default org-download-image-dir ".org_notes_figures/")
   )
-#+end_src
+#+END_SRC
 
 
 ** Python
 
 *** Autocompletion
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package elpy
   :ensure t
   :init
   (elpy-enable))
-#+end_src
+#+END_SRC
 
 *** Formatting
 
 Use [[https://pypi.org/project/black/][black]] to format code
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (load "~/.emacs.d/emacs_tools/blacken.el")
-#+end_src
+#+END_SRC
 
 *** Flycheck completion
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (when (require 'flycheck nil t)
   (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   (add-hook 'elpy-mode-hook 'flycheck-mode))
-#+end_src
+#+END_SRC
 
 
 ** Git version control with magit
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package magit
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
-#+end_src
+#+END_SRC
 
 
 ** Improve search with ivy
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package ivy
   :diminish
   :bind (("C-s" . swiper)
@@ -313,11 +320,11 @@ Use [[https://pypi.org/project/black/][black]] to format code
          ("C-d" . ivy-reverse-i-search-kill))
   :config
   (ivy-mode 1))
-#+end_src
+#+END_SRC
 
 This below allows ivy to order auto-completion based on most common usage.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package ivy-prescient
   :after counsel
   :custom
@@ -326,12 +333,12 @@ This below allows ivy to order auto-completion based on most common usage.
   ;; remember sorting across sessions
   (prescient-persist-mode 1)
   (ivy-prescient-mode 1))
-#+end_src
+#+END_SRC
 
 
 ** Counsel
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package counsel
   :bind (("C-M-j" . 'counsel-switch-buffer)
          :map minibuffer-local-map
@@ -340,12 +347,12 @@ This below allows ivy to order auto-completion based on most common usage.
   (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
   :config
   (counsel-mode 1))
-#+end_src
+#+END_SRC
 
 
 ** Company
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package company
   :after lsp-mode
   :hook (lsp-mode . company-mode)
@@ -359,7 +366,7 @@ This below allows ivy to order auto-completion based on most common usage.
 
 (use-package company-box
   :hook (company-mode . company-box-mode))
-#+end_src
+#+END_SRC
 
 
 ** Tramp
@@ -367,11 +374,11 @@ This below allows ivy to order auto-completion based on most common usage.
 Tramp allows to connect to a remote server and open remote files
 locally. It will read your =~/.ssh/config= appropriately.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package tramp
   :config
   (setq tramp-default-method "ssh"))
-#+end_src
+#+END_SRC
 
 
 ** Helpful to improve documentation
@@ -396,12 +403,12 @@ describe-function= and similar.
 
 ** org-mode related
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (define-key global-map "\C-cr" 'org-capture)
 (define-key global-map "\C-ctl" 'org-todo-list)
-#+end_src
+#+END_SRC
 
 
 ** jump to last line of a given column
@@ -409,7 +416,7 @@ describe-function= and similar.
 This is useful sometimes when looking up large data files.
 The way I obtained this is a bit convoluted.
 
-#+begin_src :tangle no
+#+BEGIN_SRC :tangle no
 to define macro with user interaction
 (defun my-macro-query (arg)
   "Prompt for input using minibuffer during kbd macro execution.
@@ -427,11 +434,11 @@ to define macro with user interaction
 
 (global-set-key "\C-xQ" 'my-macro-query)
 see http://www.emacswiki.org/emacs/KeyboardMacros#toc4 to have an idea of how I came up with this solution
-#+end_src
+#+END_SRC
 
 Using the macro query above, I defined a way to jump.
 
-#+begin_src emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (defun go-to-column (column)
   (interactive "nColumn: ")
   (move-to-column column t))
@@ -443,12 +450,10 @@ Using the macro query above, I defined a way to jump.
 (put 'last-line-which-col 'kmacro t)
 
 (global-set-key (kbd "C-c C-l") 'last-line-which-col)
-#+end_src
+#+END_SRC
 
 
 * Outstanding minor issues
-** TODO fix coupling with okular/latex
-
 ** TODO fix =org-download-clipboard= gnome crashes
 
    This is actually caused by wl-paste, which causes crashes even when
