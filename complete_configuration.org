@@ -77,8 +77,6 @@ This might require running =M-x all-the-icons-install-fonts=
 
 Show icons in the dired file manager with [[https://github.com/jtbm37/all-the-icons-dired][all-the-icons-dired]].
 Reuse the same buffer for dired, instead of opening one per folder.
-This will nicely still use a separate buffer for directory browsing
-over tramp
 
 #+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
 (use-package dired-single)
