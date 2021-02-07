@@ -81,10 +81,10 @@ This will nicely still use a separate buffer for directory browsing
 over tramp
 
 #+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(use-package dired-single)
+
 (use-package all-the-icons-dired
   :hook (dired-mode . all-the-icons-dired-mode))
-
-(use-package dired-single)
 #+END_SRC
 
 
