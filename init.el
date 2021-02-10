@@ -2,11 +2,6 @@
 
 (server-start)
 
-(recentf-mode 1)
-(setq recentf-max-menu-items 40)
-(setq recentf-max-saved-items 40)
-(global-set-key "\C-x\C-r" 'recentf-open-files)
-
 (require 'package)
 (setq package-archives '(("melpa" . "https://melpa.org/packages/")
                          ("org"   . "https://orgmode.org/elpa/")
@@ -18,6 +13,13 @@
 (use-package no-littering)
 
 (use-package all-the-icons)
+
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  )
 
 (use-package dired-single)
 
@@ -200,6 +202,11 @@
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+(setq recentf-max-saved-items 40)
+(global-set-key "\C-x\C-r" 'recentf-open-files)
 
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)

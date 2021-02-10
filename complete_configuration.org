@@ -24,16 +24,6 @@ which is tangled to [[~/.emacs.d/minimal.el][minimal.el]].
 #+END_SRC
 
 
-* Configure recent files handling
-
-#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
-(recentf-mode 1)
-(setq recentf-max-menu-items 40)
-(setq recentf-max-saved-items 40)
-(global-set-key "\C-x\C-r" 'recentf-open-files)
-#+END_SRC
-
-
 * Initialize packages
 
 #+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
@@ -79,6 +69,13 @@ Show icons in the dired file manager with [[https://github.com/jtbm37/all-the-ic
 Reuse the same buffer for dired, instead of opening one per folder.
 
 #+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(use-package dired
+  :ensure nil
+  :commands (dired dired-jump)
+  :bind (("C-x C-j" . dired-jump))
+  :custom ((dired-listing-switches "-agho --group-directories-first"))
+  )
+
 (use-package dired-single)
 
 (use-package all-the-icons-dired
@@ -394,6 +391,16 @@ describe-function= and similar.
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
   ([remap describe-key] . helpful-key))
+#+END_SRC
+
+
+* Configure recent files handling
+
+#+BEGIN_SRC emacs-lisp  :tangle ~/Documents/dotfiles/emacs26.3/dot-emacs.d/init.el
+(recentf-mode 1)
+(setq recentf-max-menu-items 40)
+(setq recentf-max-saved-items 40)
+(global-set-key "\C-x\C-r" 'recentf-open-files)
 #+END_SRC
 
 
