@@ -137,6 +137,8 @@ the lsp server separately.
   :hook (lsp-mode . lsp-ui-mode)
   :custom
   (lsp-ui-doc-position 'bottom))
+
+(use-package lsp-ivy)
 #+END_SRC
 
 

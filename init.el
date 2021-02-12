@@ -56,6 +56,8 @@
   :custom
   (lsp-ui-doc-position 'bottom))
 
+(use-package lsp-ivy)
+
 (dolist (hook '(text-mode-hook LaTeX-mode-hook))
   (add-hook hook (lambda () (flyspell-mode 1))))
 (setq flyspell-sort-corrections nil)
