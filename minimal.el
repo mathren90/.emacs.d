@@ -3,15 +3,18 @@
 (setq initial-scratch-message nil)
 
 (setq frame-title-format '("Emacs %@ %*" (:eval (if (buffer-name)(abbreviate-file-name (buffer-name)) "%b %*"))))
+
 (setq ring-bell-function 'ignore)
 (tool-bar-mode -1)
 (menu-bar-mode -1)
 (scroll-bar-mode 0)
 (set-fringe-mode 0)
+(set-default 'truncate-lines t)
 (column-number-mode)
 (global-display-line-numbers-mode t)
+
 (load-theme 'wombat t)
-(set-default 'truncate-lines t)
+(set-face-attribute 'default nil :font "MesloLGS NF")
 
 (add-hook 'before-save-hook '(lambda()
                               (when (not (or (derived-mode-p 'markdown-mode)))
@@ -23,7 +26,7 @@
 (global-set-key (kbd "C-<prior>") 'previous-buffer)
 (global-set-key (kbd "C-<next>") 'next-buffer)
 
-(global-set-key (kbd "C-x k") 'kill-this-buffer)
+(global-set-key (kbd "\C-x k") 'kill-this-buffer)
 
 (electric-pair-mode 1)
 (setq electric-pair-preserve-balance nil)
